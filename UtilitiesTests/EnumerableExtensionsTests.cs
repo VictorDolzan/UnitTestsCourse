@@ -7,7 +7,7 @@ namespace UtilitiesTests;
 public class EnumerableExtensionsTests
 {
     [Test]
-    public void Test1()
+    public void SumOfEvenNumbers_ShallReturnZero_ForEmptyCollection()
     {
         var input = Enumerable.Empty<int>();
 
