@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System.Collections;
+using NUnit.Framework;
 using Utilities;
 
 namespace UtilitiesTests;
@@ -71,5 +72,13 @@ public class EnumerableExtensionsTests
 
         //assert
         Assert.AreEqual(expectedResult, result, $"For input {number} the result shall be {expectedResult} but it was {result}.");
+    }
+
+    [Test]
+    public void SumOfEvenNumbers_ShallThrowException_ForNullInput()
+    {
+        IEnumerable<int>? input = null;
+
+        Assert.Throws<ArgumentNullException>(() => input!.SumOfEvenNumbers());
     }
 }
