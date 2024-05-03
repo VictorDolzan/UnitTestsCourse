@@ -16,19 +16,30 @@ public class EnumerableExtensionsTests
         Assert.AreEqual(0, result);
     }
     
-    [Test]
-    public void SumOfEvenNumbers_ShallReturnNonZeroResult_IfEvenNumbersArePresent()
+    // [TestCase(new int[] {3, 1, 4, 6, 7}, 10)]
+    // [TestCase(new List<int>() {100, 200, 1}, 300)]
+    [TestCaseSource(nameof(GetSumOfEvenNumberTestCase))]
+    public void SumOfEvenNumbers_ShallReturnNonZeroResult_IfEvenNumbersArePresent(IEnumerable<int> input, int expected)
     {
         //arrange
-        var input = new int[] {3, 1, 4, 6, 7};
-
+        
         //act
         var result = input.SumOfEvenNumbers();
 
         //assert
-        var expected = 10;
         var inputAsString = string.Join(", ", input);
-        Assert.AreEqual(10, result, $"For input {inputAsString} the result shall be {expected} but it was {result}.");
+        Assert.AreEqual(expected, result, $"For input {inputAsString} the result shall be {expected} but it was {result}.");
+    }
+
+    private static IEnumerable<object> GetSumOfEvenNumberTestCase()
+    {
+        return new[]
+        {
+            new object[]{new int[] {3, 1, 4, 6, 7}, 10},
+            new object[] {new List<int>() {100, 200, 1}, 300},
+            new object[] {new List<int>() {-3, -5, 0}, 0},
+            new object[] {new List<int>() {-4, -8}, -12}
+        };
     }
     
     [TestCase(8, 8)]
