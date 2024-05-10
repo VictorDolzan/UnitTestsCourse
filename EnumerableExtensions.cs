@@ -1,6 +1,11 @@
-﻿namespace Utilities;
+﻿using System.Reflection;
+using System.Runtime.CompilerServices;
 
-public static class EnumerableExtensions
+[assembly:InternalsVisibleTo("UtilitiesTests")]
+
+namespace Utilities;
+
+internal static class EnumerableExtensions
 {
     public static int SumOfEvenNumbers(this IEnumerable<int> numbers)
     {
@@ -8,6 +13,6 @@ public static class EnumerableExtensions
             .Where(IsEven)
             .Sum();
     }
-    
+
     private static bool IsEven(int number) => number % 2 == 0;
 }
